@@ -20,7 +20,6 @@ function ContactsForm({ contacts, onAddContacts }) {
       onAddContacts(name, phone);
     }
 
-    onAddContacts(name, phone);
     setName('');
     setPhone('');
   };
