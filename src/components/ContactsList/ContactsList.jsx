@@ -2,9 +2,8 @@ import { connect } from 'react-redux';
 import { deleteContacts } from '../../redux/contacts-actions';
 import propTypes from 'prop-types';
 import s from './ContactList.module.css';
-import { filterContacts } from '../../redux/contacts-actions';
 
-function ContactsList({ filteredContacts, filter, contacts, onDeleteBtn }) {
+function ContactsList({ contacts, onDeleteBtn }) {
   return (
     <>
       <ul>
@@ -42,14 +41,12 @@ const filteredContacts = (contacts, filter) => {
 
 const mapStateToProps = ({ contacts, filter }) => {
   return {
-    filter,
     contacts: filteredContacts(contacts, filter),
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onDeleteBtn: id => dispatch(deleteContacts(id)),
-  filteredContacts: value => dispatch(filterContacts(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);

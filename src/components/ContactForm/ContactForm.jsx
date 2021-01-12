@@ -4,12 +4,21 @@ import propTypes from 'prop-types';
 import s from './ContactForm.module.css';
 import { addContacts } from '../../redux/contacts-actions';
 
-function ContactsForm({ onAddContacts }) {
+function ContactsForm({ contacts, onAddContacts }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    const isAdded = name =>
+      contacts.map(contact => contact.name).includes(name);
+
+    if (isAdded(name)) {
+      return alert(`${name} is already in contacts`);
+    } else {
+      onAddContacts(name, phone);
+    }
 
     onAddContacts(name, phone);
     setName('');
@@ -52,8 +61,12 @@ ContactsForm.propTypes = {
   onAddContacts: propTypes.func,
 };
 
+const mapStateToProps = state => ({
+  contacts: state.contacts,
+});
+
 const mapDispatchToProps = dispatch => ({
   onAddContacts: (name, phone) => dispatch(addContacts(name, phone)),
 });
 
-export default connect(null, mapDispatchToProps)(ContactsForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsForm);
