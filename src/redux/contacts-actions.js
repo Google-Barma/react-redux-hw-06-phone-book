@@ -14,3 +14,13 @@ export const deleteContacts = id => ({
   type: types.DELETE,
   payload: { id },
 });
+
+export const changeFilter = value => ({
+  type: types.CHANGE_FILTER,
+  payload: { value },
+});
+
+export const filtet = filter => ({
+  type: types.FILTER,
+  payload: { filter },
+});

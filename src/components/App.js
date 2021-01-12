@@ -8,18 +8,18 @@ import ContactsList from './ContactsList/ContactsList';
 import Filter from './Filter/Filter';
 
 function App({ contacts, onAddContacts }) {
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const changeFilter = filter => setFilter(filter);
+  // const changeFilter = filter => setFilter(filter);
 
-  const handleChangeFilter = () =>
-    contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()),
-    );
+  // const handleChangeFilter = () =>
+  //   contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(filter.toLowerCase()),
+  //   );
 
   // const isAdded = name => contacts.map(contact => contact.name).includes(name);
 
@@ -42,10 +42,12 @@ function App({ contacts, onAddContacts }) {
 
       {contacts.length ? (
         <Section title="Contacts">
-          <Filter value={filter} onChangeFilter={changeFilter} />
+          <Filter
+          // value={filter} onChangeFilter={changeFilter}
+          />
           <ContactsList
-            contactsData={handleChangeFilter()}
-            // onDeleteBtn={handleDelBtn}
+          // contactsData={handleChangeFilter()}
+          // onDeleteBtn={handleDelBtn}
           />
         </Section>
       ) : null}

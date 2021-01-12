@@ -1,7 +1,10 @@
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import { changeFilter } from '../../redux/contacts-actions';
 import propTypes from 'prop-types';
 import s from './Filter.module.css';
 
-export default function Filter({ value, onChangeFilter }) {
+function Filter({ value, onChangeFilter }) {
   return (
     <>
       <label className={s.text} name="filter" htmlFor="filter" value={value}>
@@ -21,3 +24,13 @@ Filter.propTypes = {
   value: propTypes.string,
   onChangeFilter: propTypes.func,
 };
+
+const mapStateToProps = state => ({
+  value: state.filter,
+});
+
+const mapDispatchToProps = {
+  onChangeFilter: value => dispatchEvent(changeFilter(value)),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

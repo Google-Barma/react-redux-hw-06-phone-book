@@ -19,8 +19,18 @@ const contactsReducer = (
   }
 };
 
-const filterReducer = (state = '', action) => {
-  return state;
+const filterReducer = (state = '', { type, payload }) => {
+  switch (type) {
+    case types.FILTER:
+      return state.filter(contact =>
+        contact.name.toLowerCase().includes(payload.value.toLowerCase()),
+      );
+    case types.CHANGE_FILTER:
+      return payload;
+
+    default:
+      return state;
+  }
 };
 
 const rootReducer = combineReducers({
