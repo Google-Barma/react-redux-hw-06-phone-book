@@ -20,7 +20,7 @@ export const changeFilter = value => ({
   payload: { value },
 });
 
-export const filtet = filter => ({
-  type: types.FILTER,
-  payload: { filter },
+export const filterContacts = contacts => ({
+  type: types.FILTER_CONTACTS,
+  payload: { contacts },
 });
