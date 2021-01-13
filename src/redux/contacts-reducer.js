@@ -1,10 +1,6 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import defaultContacts from '../base/defaultContacts';
-import {
-  changeFilter,
-  addContacts,
-  deleteContacts,
-} from '../redux/contacts-actions';
+import { changeFilter, addContacts, deleteContacts } from './contacts-actions';
 
 const contactsReducer = createReducer(
   JSON.parse(window.localStorage.getItem('contacts')) ?? defaultContacts,
@@ -18,7 +14,7 @@ const contactsReducer = createReducer(
 );
 
 const filterReducer = createReducer('', {
-  [changeFilter]: (state, { payload }) => payload,
+  [changeFilter]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
